@@ -1,0 +1,51 @@
+{% extends "index.html" %}
+{% block head %}
+    <style>
+#loader {
+            animation: spin 2s linear infinite;
+            border-radius: 50%;
+            border: lightgray 2px solid;
+            border-top: deepskyblue 2px solid;
+            display: none;
+            width: 150px;
+            height: 150px;
+            margin: 50px auto;
+        }
+
+@keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+</style>
+
+{% endblock %}
+
+{% block body %}
+
+<h1 style="min-width: 100vw; max-height: 40vh; text-align: center" class="mt-4">AI Resume Enhancer</h1>
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 50vh;">
+    <div class="col-md-12">
+        <form class="row-md-12" id="form" method="POST" action="/analyze" enctype="multipart/form-data">
+            <div class="mb-3">
+                <input class="form-control" name="resume" type="file" accept=".pdf, .docx, .txt" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="jobDesc">Job Description</label>
+                <input class="form-control" type="text" name="jobDesc" id="jobDesc">
+            </div>
+            <button type="submit" class="btn btn-primary form-control mt-3">Analyze</button>
+        </form>
+    </div>
+</div>
+<div id="loader"></div>
+<script>
+let loader = document.getElementById('loader');
+let form = document.getElementById('form');
+
+form.addEventListener('submit', () => {
+    loader.style.display = 'block';
+
+});
+</script>
+{% endblock %}
