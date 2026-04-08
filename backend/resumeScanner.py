@@ -36,9 +36,9 @@ def extractText(byte):
 def prompt(file, jobDesc):
     resume_extracted: str = extractText(byte=file)
 
-    ai_instructions = """
+    ai_instructions = f"""
     You are an expert resume reviewer.
-    Analyze the resume against the job description. Answer poplitley and tel the user how to improve it.
+    Analyze the resume against the job description. Answer politley and tell the user how to improve it.
     Provide:
     - ATS score (0–100)
     - Missing keywords
@@ -46,10 +46,10 @@ def prompt(file, jobDesc):
     - Weaknesses
     - Bullet point improvements
     Resume:
-    FROM USER
+    {resume_extracted}
 
     Job Description:
-    FROM USER
+    {jobDesc}
 
 
 
